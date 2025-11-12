@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Base de données : `ciop_uploader`
 --
 
+CREATE DATABASE ciop_uploader;
+USE ciop_uploader;
+
 -- --------------------------------------------------------
 
 --
