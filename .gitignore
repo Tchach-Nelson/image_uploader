@@ -1,0 +1,14 @@
+# Node
+node_modules/
+.env
+uploads/
+.DS_Store
+*.log
+
+# Build / Temp
+dist/
+tmp/
+.cache/
+
+# VSCode
+.vscode/

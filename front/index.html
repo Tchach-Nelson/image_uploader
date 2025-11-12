@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="my-shadow">
+        <div class="upload-container">
+            <h1>UPLOAD IMAGE</h1>
+            <div id="dropZone">
+                <label for="fileInput" class="file-label">
+                    <img src="img/cloud-upload.svg" alt="Uploader" class="upload-icon" title="Uploader une image">
+                    <p class="text-upload">Glissez vos images ici ou <span>cliquez pour sélectionner</span></p>
+                </label>
+                <input type="file" id="fileInput" multiple accept="image/*">
+            </div>
+            <div id="fileList"></div>
+            <button class="my-btn" id="uploadBtn">Uploader</button>
+        </div>
+        <div class="gest-pop-up">
+            LISTER LES IMAGES
+        </div>
+    </div>
+    
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <br>
+            <h1 style="margin-top: -12px;" >APERCU (<span style="font-size: 20px;">800px - 500px</span>) :</h1> 
+            <!-- <div style="text-align: left;">redimensionner en 800px</div> -->
+            <!-- <hr style="border: 1px solid #aaa;"> -->
+            <h3 id="modalImageName"></h3>
+            <img id="modalImagePreview" src="" alt="Aperçu de l'image">
+        </div>
+    </div>
+
+    <div id="gestionModal" class="modal">
+        <div class="modal-content">
+            <span class="closeGes-btn">&times;</span>
+            <br>
+            <h1 style="margin-top: -12px;">LISTER LES IMAGES :</h1>
+            <p id="listImage">
+                ....
+            </p>
+        </div>
+    </div>
+
+
+    
+    <script src="script.js"></script>
+</body>
+
+</html>

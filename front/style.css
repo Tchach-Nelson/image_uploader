@@ -1,0 +1,358 @@
+body {
+    background-image: url('img/bg.jpg');
+    background-position: bottom;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    transition: background 1s ease;
+}
+
+.my-shadow {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    width: 100%;
+    animation: fadeIn 1.2s ease forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px;
+}
+h1 {
+    color: #0098c1;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.upload-container {
+    width: 80%;
+    max-width: 600px;
+    min-height: 350px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255);
+    transform: scale(0.97) translateY(20px);
+    opacity: 0;
+    animation: smoothAppear 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    transition: width 0.2s ease;
+    /* évite le "saut" du contenu */
+}
+
+#dropZone {
+    border: 2px dashed #aaa;
+    padding: 30px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 35px;
+    transition: all 0.4s ease;
+    word-wrap: break-word;
+    height: 100px;
+    color: #aaa;
+}
+
+#fileList {
+    margin-bottom: 20px;
+    min-height: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc white;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.progress-bar {
+    width: 0;
+    height: 5px;
+    background: green;
+    margin-top: 5px;
+}
+
+.error {
+    color: red;
+}
+
+.my-btn {
+    border: 2px solid #0098c1;
+    height: 50px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #0098c1;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.my-btn:hover {
+    color: white;
+    background-color: #0098c1;
+}
+
+#fileInput {
+    display: none;
+}
+
+.upload-icon {
+    margin-top: -15px;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.upload-icon:hover {
+    transform: scale(1.05);
+}
+
+.text-upload {
+    cursor: pointer;
+    margin-top: -8px;
+    font-weight: bolder;
+}
+
+.text-upload span {
+    color: #0098c1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes smoothAppear {
+    0% {
+        transform: scale(0.97) translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+.dragover {
+    background-color: rgba(0, 152, 193, 0.1);
+    border-color: #0098c1 !important;
+    color: #0098c1;
+}
+
+.file-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    padding: 10px;
+    font-weight: bolder;
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.file-item.error {
+    border-color: red;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.progress-container {
+    width: 100%;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 12px;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 500px;
+    background: #0098c1;
+    transition: width 0.2s ease;
+}
+
+
+
+/* Style de la Pop-up (Modale) */
+.modal {
+    display: none;
+    /* Masqué par défaut */
+    position: fixed;
+    z-index: 100;
+    /* Assure que la modale est au-dessus de tout */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    /* Active le défilement si nécessaire */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond noir semi-transparent */
+}
+
+/* Contenu de la Pop-up */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    /* 10% du haut et centré */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 700px;
+    /* Largeur maximale */
+    border-radius: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    text-align: center;
+    height: 550px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cccccc white;
+
+}
+
+/* Image à l'intérieur de la pop-up */
+#modalImagePreview {
+    max-width: 100%;
+    height: auto;
+    /* 500px */
+    display: block;
+    margin: 15px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-radius: 35px;
+}
+
+#modalImageName {
+    text-align: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    color: #aaa;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+/* Bouton de fermeture (x) */
+.close-btn,
+.closeGes-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn,
+.closeGes-btn:hover,
+.close-btn,
+.closeGes-btn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style pour le lien d'aperçu cliquable */
+.preview-link {
+    cursor: pointer;
+    user-select: none;
+    /* Empêche la sélection de texte */
+}
+
+.gest-pop-up {
+    color: #fff;
+    font-weight: bolder;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.image-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.image-card {
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.image-card:hover {
+    transform: translateY(-4px);
+}
+
+.image-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.image-info {
+    padding: 8px;
+    font-size: 12px;
+    color: #333;
+}
+
+.delete-btn {
+    background-color: #ff4747;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #ff1f1f;
+}
+
+.telecharger-btn {
+    background-color: #0098c1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.telecharger-btn:hover {
+    background-color: #02c8ff;
+}
+
+.telecharger-btn a {
+    color: white;
+    text-decoration: none;
+}
